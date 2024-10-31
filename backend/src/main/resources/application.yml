@@ -1,0 +1,23 @@
+server:
+  port: 8060
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/project
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: haythem
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+
+application:
+  security:
+    jwt:
+      expiration: 8640000
+      secret-key: 91meaCW+8lFIvxbZNgTDpe/mV8O0Kjd0YYgAkB+mgHU=
