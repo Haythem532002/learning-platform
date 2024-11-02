@@ -1,13 +1,28 @@
 import { useState } from 'react'
 import './App.css'
+import Dashboard from './pages/Dashboard/Dashboard'
+import RegisterPage from './pages/RegisterPage/RegisterPage'
+import LoginPage from './pages/LoginPage/LoginPage'
 
-const [p,setp]=useState<string>("azdaz")
 function App() {
 
   return (
-    <div>
+    <Router>
+    {
+      token?
+    <Routes>
+      <Route path="/" Component={LoginPage} />
+      <Route path="/register" Component={RegisterPage} />
+    </Routes>
+    :
+    <Routes>
+      <Route  Component={Dashboard} />
+      <Route  path='/' Component={Dashboard} />
+    </Routes>
+    
+    }
 
-    </div>
+    </Router>
   )
 }
 

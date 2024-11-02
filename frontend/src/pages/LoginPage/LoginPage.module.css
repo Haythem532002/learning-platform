@@ -1,0 +1,269 @@
+
+#container{
+    background-color: rgba(5, 51, 151, 0.849);
+    width: 98em;
+    height: 60em;
+    min-width: 98em;
+    min-height: 60em;
+    overflow: auto;
+    display: block;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    align-content: center;
+}
+#loginContainer{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: rgb(236, 236, 236);
+    width: 90%;
+    height: 90%;
+    overflow: auto;
+    align-self: center;
+    place-self: center;
+    justify-self: center;
+    border-radius: 2em;
+    padding: 1em;
+}
+#mainNav{
+    height: 3em;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 1em;
+}
+#lastNav{
+    height: 2em;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 1em;
+    justify-self: flex-end !important;
+    margin-top: 2em;
+}
+#lastNav a{
+    color: gray;
+    font-style: none;
+    text-decoration: none;
+    
+}
+#lastNav ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+}
+#lastNav li{
+    margin-right: 2em;
+    font-size: 0.9em;
+    color: gray;
+    font-size: bold;
+
+}
+.authBtn{
+    
+    height: 2em;
+    padding: 1em  2em;
+    text-align: center;
+    background-color: transparent;
+    border: 0.08em solid rgba(128, 128, 128, 0.658);
+    border-radius: 2em;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    align-content: center;
+    overflow: hidden;
+    color: rgba(128, 128, 128, 0.658);
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 0.7em;
+    transition: 0.2s all;
+}
+#register:hover{
+    background-color: rgba(128, 128, 128, 0.658);
+    color: white;
+    transition: 0.2s all;
+
+
+}
+#logo{
+    width: auto;
+    height: 80%;
+    margin-left: 1em;
+
+}
+#loginMain{
+    height: 80%;
+    min-width: 100%;
+    padding: 2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+#imageSection{
+    width: 50%;
+    height: 100%;
+    background-image: url("./assets/learning.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 1em;
+
+}
+#loginSection{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+#loginForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  
+    justify-content: center;
+
+}
+#loginForm input{
+    position: relative;
+    width: 60%;
+    margin: 1em 0;
+    padding: 2em;
+    height: 5em;
+    border-radius: 1em;
+    border: 0.02em solid BLACK;
+    transition: 0.2s all;
+}
+#loginLinks{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1em;
+    width: 60%;
+    height: 17%;
+;
+}
+#loginLinks ul{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#loginLinks li{
+    
+    margin: 0.5em 0.5em;
+}
+#google{
+    min-height: 1.7em;
+    min-width: 1.7em;
+    background-image: url("./assets/google.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50em;
+}
+#facebook{
+    min-height: 1.7em;
+    min-width: 1.7em;
+    background-image: url("./assets/facebook.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50em;
+}
+#linkedin{
+    min-height: 1.7em;
+    min-width: 1.7em;
+    background-image: url("./assets/linkedin.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50em;
+}
+#links{
+    text-align: end;
+    height: 100%;
+
+}
+#loginControls{
+    width: 60%;
+    height: 3em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+#loginControls a{
+    font-size: 0.8em;
+    font-weight: bold;
+}
+#loginBtn{
+border: 0.08em solid rgb(14, 106, 245);
+background-color: rgb(14, 106, 245);
+color: white;
+height: 2.5em;
+transition: 0.2s all;
+
+}
+#loginBtn:hover{
+
+    border: 0.08em solid white;
+    background-color: white;
+    color: rgb(14, 106, 245);
+transition: 0.2s all;
+
+}
+.inputSpan{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+}
+#deadItem{
+    transform: translateY(-230%);
+    z-index: 100;
+    border-bottom: 0.4em solid white;
+    font-size: 1em;
+    user-select: none;
+    pointer-events: none;
+    transition: 0.2s all;
+}
+#loginForm input:hover{
+    border: 0.2em solid black;
+    transition: 1s all;
+}
+
+#deadItem2{
+    transform: translateY(-230%);
+    border-bottom: 0.4em solid white;
+    z-index: 100;
+    font-size: 1em;
+    user-select: none;
+    pointer-events: none;
+    transition: 0.2s all;
+}
+#loginForm input:focus + #deadItem{
+    transform: translate(-150%,-379%);
+    border-bottom: 0.4em solid white;
+    transition: 0.2s all;
+}
+
+#loginForm input:focus + #deadItem2{
+    transform: translate(-100%,-379%);
+    border-bottom: 0.4em solid white;
+    transition: 0.2s all;
+}
