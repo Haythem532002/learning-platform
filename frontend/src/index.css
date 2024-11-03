@@ -5,37 +5,37 @@
   height: 100%;
   width: 100%;
 } */
-button{
+button {
   cursor: pointer;
 }
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-::-webkit-scrollbar{
-  background-color: #2B52A7;
+::-webkit-scrollbar {
+  background-color: #2b52a7;
   border-radius: 50em;
   border: 0.08em solid rgb(15, 81, 223);
   display: none;
 }
 
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   background-color: white;
   border-radius: 50em;
   display: none;
 }
-::-webkit-scrollbar-button{
+::-webkit-scrollbar-button {
   display: none;
 }
-.spanner{
+.spanner {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 }
-a{
-  list-style: none !important;
+a {
+  text-decoration: none !important;
   color: black;
 }

@@ -12,21 +12,18 @@
   padding: 10px;
   background-color: #ebeeef;
   cursor: pointer;
-
-  margin:15px 0 ;
+  margin: 15px 0;
   transition: 0.2s all;
 }
 .container:hover {
   background-color: #bae8f8;
   transition: 0.2s all;
-
-
 }
 .image {
-  background-image: url('../../../assets/courseImg.png');
+  background-image: url("../../../assets/courseImg.png");
   background-position: center;
   background-repeat: no-repeat;
-  background-size:cover;
+  background-size: cover;
   width: 10em;
   height: 5em;
   border-radius: 1em;
@@ -53,7 +50,7 @@
   justify-content: flex-start;
 }
 
-#container{
+#container {
   overflow-y: scroll;
   overflow-x: none;
 }
