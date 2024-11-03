@@ -1,6 +1,6 @@
 
+import { extractExtension } from '../../../utils/utils'
 import styles from './MaterialComponent.module.css'
-import extractExtenstion from '../../../utils/utils'
 interface props{
     fileName:string
     removeMaterial:any
@@ -9,7 +9,7 @@ interface props{
 
 export default function MaterialComponent(props:props){
 const fileName=props.fileName
-const extension=extractExtenstion(fileName)
+const extension=extractExtension(fileName)
 const removeMaterial=props.removeMaterial
 
 

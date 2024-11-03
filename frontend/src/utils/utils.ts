@@ -1,5 +1,3 @@
-import e from "express";
-
 export const extractExtension = (file: string) => {
   let extension = "";
   for (let k = file.length - 1; k > -1; k--) {

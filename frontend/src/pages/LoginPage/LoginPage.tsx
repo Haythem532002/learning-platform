@@ -3,6 +3,7 @@ import styles from "./LoginPage.module.css";
 import logo from "../../assets/logo.png";
 import { post } from "../../services/api";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { useAuth } from "../../services/auth/AuthContext";
 
 function LoginPage() {
   const [password, setPassword] = useState<string>("");
@@ -60,7 +61,7 @@ function LoginPage() {
       console.log("Logged In");
       setToken(res.data);
     } else {
-      console.log("cant login");
+      console.log("can't login");
     }
   }
   return (
