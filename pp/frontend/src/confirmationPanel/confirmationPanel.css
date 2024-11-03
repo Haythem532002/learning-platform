@@ -1,0 +1,87 @@
+.confirmation-panel{
+    background-color: rgba(155, 148, 148, 0.185);
+    backdrop-filter: blur(5px);
+    position: fixed;
+    display: none;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 20em;
+    height: 15em;
+    border: 0.08em solid black;
+    border-radius: 1em;
+    text-align: center;
+    z-index: 1000;
+    opacity: 0;
+    overflow: hidden;
+    transition: 0.2s all;
+
+}
+.popPanel{
+    opacity: 1;
+    transition: 0.2s all;
+}
+.confirmation-yes{
+    background-color: rgba(35, 218, 35, 0.747);
+    color: white;
+    border: 0.08em solid rgba(35, 218, 35, 0.747);
+    border-radius: 1em;
+    padding: 0.5em 1em;
+    font-weight: bold;
+    margin: 0.5em;
+    transition: 0.2s all;
+
+}
+.confirmation-yes:hover{
+    color: rgba(35, 218, 35, 0.747);
+    background-color: transparent;
+    border: 0.08em solid rgba(35, 218, 35, 0.747);
+    border-radius: 1em;
+    font-weight: bold;
+    padding: 0.5em 1em;
+    transition: 0.2s all;
+
+}
+
+.confirmation-message{
+    position: relative;
+    width: 100%;
+    word-break: break-all;
+    margin: 1em 2em;
+    padding: 2em;
+    overflow: hidden auto;
+    max-height: 80%;
+}
+.confirmation-no{
+    background-color: rgba(235, 63, 63, 0.747);
+    color: white;
+    border: 0.08em solid rgba(235, 63, 63, 0.747);
+    border-radius: 1em;
+    padding: 0.5em 1em;
+    font-weight: bold;
+    transition: 0.2s all;
+
+}
+.confirmation-no:hover{
+    color: rgba(235, 63, 63, 0.747);
+    background-color: transparent;
+    border: 0.08em solid rgba(235, 63, 63, 0.747);
+    border-radius: 1em;
+    font-weight: bold;
+    padding: 0.5em 1em;
+    transition: 0.2s all;
+
+}
+.confirmation-controls{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    max-height: 20%;
+}

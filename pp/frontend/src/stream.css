@@ -1,0 +1,42 @@
+#live-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    }
+    #live-frame{
+        border-radius: 1em;
+        border:rgba(122, 121, 121, 0.555) 0.1em solid;
+        width: 40em;
+        height: 30em;
+        background-color: black;
+    }
+    #live-frame::before{
+    
+    }
+    #mic-status{
+        text-align: center;
+        position: absolute;
+        left:95%;
+        top:58%;
+        transform: translate(-95%,-58%);
+       min-width: 7em;
+       border: 0.08em solid black;
+       padding: 0.2em;
+       border-radius: 0.2em;
+       background-color: rgba(0, 0, 0, 0.5);
+    
+    }
+    #camera-status{
+        text-align: center;
+        position: absolute;
+        left:95%;
+        top:64%;
+        transform: translate(-95%,-64%);
+        min-width: 7em;
+        padding: 0.2em;
+        border-radius: 0.2em;
+       border: 0.08em solid black;
+       background-color: rgba(0, 0, 0, 0.5);
+    }
