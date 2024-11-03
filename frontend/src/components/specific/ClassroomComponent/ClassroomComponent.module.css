@@ -1,0 +1,30 @@
+.container{
+    border: 0.08em solid black;
+    border-radius: 1em;
+    padding: 2em;
+    text-align: center;
+    min-width: 100em;
+    margin: 1em 2em;
+}
+#description{
+    height: 3em;
+    width: 80%;
+    background-color: white;
+    padding: 0.5em;
+    border-radius: 0.2em;
+    word-break: break-all;
+    overflow-y: auto;
+}
+
+
+#description::-webkit-scrollbar{
+    border: 0.08em solid rgba(119, 122, 128, 0.671);
+    width: 0.5em;
+    border-radius: 1em;
+    background-color: white;
+}
+#description::-webkit-scrollbar-thumb{
+    background-color:  rgba(123, 124, 126, 0.671);
+    width: 0.5em;
+    border-radius: 1em;
+}

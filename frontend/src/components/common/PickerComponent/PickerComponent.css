@@ -1,0 +1,7 @@
+#picker-component-container{
+    width: 4em;
+    min-height: 4em;
+    border: none;
+    box-shadow: 0px -10px 20px rgba(0, 0, 0, 0.3);
+    transition: 0.2s all;
+}

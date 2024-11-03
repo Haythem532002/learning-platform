@@ -1,0 +1,9 @@
+
+#container div{
+    margin: 0.5em;
+    background-color: white;
+    border-radius: 1em;
+    padding: 0 0.5em;
+    width: 3em;
+    overflow: hidden;
+}
