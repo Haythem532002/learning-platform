@@ -1,6 +1,6 @@
 import e from "express";
 
-const extractExtension = (file: string) => {
+export const extractExtension = (file: string) => {
   let extension = "";
   for (let k = file.length - 1; k > -1; k--) {
     if (file[k] == ".") break;
@@ -21,4 +21,19 @@ const extractExtension = (file: string) => {
 //   });
 // };
 
-export default extractExtension;
+
+export function formateDateToLocal(date:Date,minute:number,hour:number){
+  // 2024-01-01T14:30:30
+  const month:number=(date.getMonth()+1)
+  const day:number=date.getDate()
+  const monthadder=(month<10)?"0":""
+  const dayadder=(day<10)?"0":""
+  const minuteadder=(minute<10)?"0":""
+  const houradder=(hour<10)?"0":""
+  return date.getFullYear()+"-"+monthadder+month+"-"+dayadder+day+"T"+houradder+ hour+":"+minuteadder+ minute+":00"
+ 
+  //011-3T0:0:00
+ 
+ 
+ }
+

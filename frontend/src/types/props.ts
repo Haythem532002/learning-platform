@@ -6,9 +6,9 @@ export interface Classroom {
   title: string;
   description: string;
   password: string;
-  startTime: string;
+  startTime: Date;
   private: boolean;
   streamId: string;
   active: boolean;
-  materials: Material[];
+  materials: File[];
 }
