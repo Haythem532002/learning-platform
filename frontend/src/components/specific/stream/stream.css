@@ -1,0 +1,112 @@
+#live-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: rgb(144, 204, 231);
+}
+#live-frame {
+  border-radius: 1em;
+  border: rgba(122, 121, 121, 0.555) 0.1em solid;
+  width: 40em;
+  height: 30em;
+  background-color: black;
+}
+#live-frame::before {
+}
+#mic-status {
+  color: rgba(11, 76, 175, 0.733);
+  text-align: center;
+  position: fixed;
+  left: 95%;
+  top: 58%;
+  transform: translate(-95%, -58%);
+  min-width: 7em;
+  border: 0.08em solid white;
+  padding: 0.2em;
+  border-radius: 0.2em;
+  background-color: white;
+}
+#camera-status {
+  color: rgba(11, 76, 175, 0.733);
+  text-align: center;
+  position: fixed;
+  left: 95%;
+  top: 64%;
+  transform: translate(-95%, -64%);
+  min-width: 7em;
+  padding: 0.2em;
+  border-radius: 0.2em;
+  border: 0.08em solid white;
+  background-color: white;
+}
+
+#stream-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 -0.11em 0.5em white;
+  border-radius: 1em;
+  padding: 1em;
+  width: 50%;
+}
+
+#sub-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#stream-controls button {
+  border-radius: 1em;
+  border: 0.08em solid black;
+  margin: 0.2em;
+  height: 3em;
+  overflow: hidden;
+  word-wrap: break;
+  font-weight: bold;
+  text-align: center;
+  transition: 0.2s all;
+}
+
+#stream-controls button:hover {
+  background-color: transparent;
+  color: white;
+  border: 0.08em solid white;
+  transition: 0.2s all;
+}
+
+#others::-webkit-scrollbar {
+  border: 0.08em solid rgb(0, 140, 255);
+  border-radius: 1em;
+  background-color: transparent;
+  height: 0.5em;
+}
+#others::-webkit-scrollbar-thumb {
+  background-color: rgb(0, 140, 255);
+  border-radius: 1em;
+  height: 0.5em;
+}
+#others {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  height: 10em;
+  width: 40em;
+  margin: 1em;
+  border-radius: 1em;
+  overflow-y: auto;
+}
+
+#others video {
+  border-radius: 1em;
+  border: rgba(122, 121, 121, 0.555) 0.1em solid;
+  width: 8em;
+  height: 8em;
+  margin-right: 1em;
+  background-color: black;
+}

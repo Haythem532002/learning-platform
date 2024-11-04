@@ -3,10 +3,10 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/project
+    url: jdbc:postgresql://localhost:5432/bro
     driver-class-name: org.postgresql.Driver
     username: postgres
-    password: haythem
+    password: 123
   jpa:
     hibernate:
       ddl-auto: update

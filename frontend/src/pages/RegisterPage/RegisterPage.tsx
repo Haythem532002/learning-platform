@@ -120,7 +120,7 @@ function RegisterPage() {
 
   async function register() {
     let res = await post("http://localhost:8060/auth/register", {
-      email: "anes@gmail.com",
+      email: "aness@gmail.com",
       password: "12345678",
       firstName: "azd",
       lastName: "azdad",
