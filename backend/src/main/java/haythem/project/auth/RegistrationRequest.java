@@ -1,5 +1,6 @@
 package haythem.project.auth;
 
+import haythem.project.user.RoleUser;
 import jakarta.validation.constraints.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -17,5 +18,6 @@ public class RegistrationRequest {
     @NotBlank(message = "Password is Mandatory")
     @Size(min = 8 , message = "Password should be 8 characters minimum")
     String password;
+    RoleUser roleUser;
 }
 

@@ -2,15 +2,15 @@ import { useEffect, useState, useRef } from "react";
 import styles from "./LoginPage.module.css";
 import logo from "../../assets/logo.png";
 import { post } from "../../services/api";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { useAuth } from "../../services/auth/AuthContext";
+import { Link } from "react-router-dom";
 
 function LoginPage() {
   const [password, setPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const deadItem = useRef<HTMLParagraphElement | null>(null);
   const deadItem2 = useRef<HTMLParagraphElement | null>(null);
-  const { setToken } = useAuth();
+  const { setToken, setUserData } = useAuth();
 
   function handlePassword(e: any) {
     setPassword(e.target.value);
@@ -54,12 +54,17 @@ function LoginPage() {
 
   async function login() {
     let res = await post("http://localhost:8060/auth/login", {
-      email: "anes@gmail.com",
+      email: "anees@gmail.com",
       password: "12345678",
     });
     if (res.status == 200) {
       console.log("Logged In");
-      setToken(res.data);
+      setToken(res.data.token);
+      setUserData(res.data.response);
+
+      console.log(res.data.response);
+
+      // window.location.href = "/";
     } else {
       console.log("can't login");
     }

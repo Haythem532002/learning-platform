@@ -11,6 +11,7 @@ const ClassroomComponentUpdated = (props: Classroom) => {
   const [seconds, setSeconds] = useState<number>(0);
   const [status, setStatus] = useState<boolean>(false);
 
+  console.log(props);
   return (
     <div className={viewClassroom.container}>
       <div className={viewClassroom.image}></div>
@@ -21,21 +22,25 @@ const ClassroomComponentUpdated = (props: Classroom) => {
       <div className={viewClassroom.info}>
         <p>{props.startTime}</p>
 
-        {status?
-        <p>Room Is Open</p>
-        :
-        <Timer deadLine={props.startTime} 
-        setDays={setDays}
-        setMinutes={setMinutes}
-        setHours={setHours}
-        setSeconds={setSeconds}
-        days={days}
-        minutes={minutes}
-        hours={hours}
-        seconds={seconds}
-        setStatus={setStatus}
-        />}
-        <p><strong>{!props.isPrivate?"Public":"Private"}</strong></p>
+        {status ? (
+          <p>Room Is Open</p>
+        ) : (
+          <Timer
+            deadLine={props.startTime}
+            setDays={setDays}
+            setMinutes={setMinutes}
+            setHours={setHours}
+            setSeconds={setSeconds}
+            days={days}
+            minutes={minutes}
+            hours={hours}
+            seconds={seconds}
+            setStatus={setStatus}
+          />
+        )}
+        <p>
+          <strong>{!props.isPrivate ? "Public" : "Private"}</strong>
+        </p>
       </div>
     </div>
   );

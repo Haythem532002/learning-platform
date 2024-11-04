@@ -1,16 +1,3 @@
-#classroom-container {
-  width: 90em;
-  height: 100vh;
-  align-self: center;
-  justify-content: center;
-  border: 0.08em solid black;
-  border-radius: 1em;
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
 #classroom-adder {
   margin: 1em;
   display: flex;
@@ -45,8 +32,8 @@
   padding: 2em;
   border: 0.08em solid black;
   border-radius: 1em;
-  width: 90%;
-  height: 90%;
+  width: 80%;
+  height: 100%;
   position: relative;
   background-color: rgb(255, 255, 255);
   opacity: 100%;
@@ -207,14 +194,9 @@
   justify-content: flex-start;
   align-items: flex-start;
   padding: 2em;
+  height: 100%;
   flex-wrap: wrap;
 }
-#classroom-description::-webkit-scrollbar {
-  border: 0.08em solid rgba(30, 97, 241, 0.801);
-  border-radius: 1em;
-  background-color: transparent;
-}
-#classroom-description::-webkit-scrollbar-thumb {
-  background-color: rgba(30, 97, 241, 0.801);
-  border-radius: 1em;
+::-webkit-scrollbar {
+  display: none;
 }

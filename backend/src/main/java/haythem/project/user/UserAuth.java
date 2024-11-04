@@ -33,6 +33,8 @@ public class UserAuth implements UserDetails, Principal {
     String password;
     boolean locked;
     boolean enabled;
+    @Enumerated(EnumType.STRING)
+    RoleUser roleUser;
 
     @OneToMany(mappedBy = "userAuth")
     List<Token> tokens;

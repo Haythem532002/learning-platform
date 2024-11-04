@@ -8,23 +8,31 @@ import { faBell } from "@fortawesome/free-solid-svg-icons/faBell";
 import { faEye } from "@fortawesome/free-solid-svg-icons/faEye";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons/faArrowRightFromBracket";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../../services/auth/AuthContext";
 const Sidebar = () => {
+  function logout() {
+    localStorage.removeItem("jwtToken");
+    window.location.href = "/login";
+  }
+  const { user } = useAuth();
   return (
     <div className={sidebar.sidebarContainer}>
       <div className={sidebar.sidebarHeader}>
         <img src={logo} alt="image" />
-        <h3>Nom Prenom </h3>
+        <h3>{user?.firstname + " " + user?.lastname} </h3>
       </div>
       <div className={sidebar.sidebarLinks}>
         <ul>
           <li>
-            <Link to="/dashboard/add_classroom">
-              <FontAwesomeIcon className={sidebar.icons} icon={faPlus} />
-              Create Classroom
-            </Link>
+            {user !== null && user.roleUser === "INSTRUCTOR" && (
+              <Link to="/add-classroom">
+                <FontAwesomeIcon className={sidebar.icons} icon={faPlus} />
+                Create Classroom
+              </Link>
+            )}
           </li>
           <li>
-          <Link to="/dashboard">
+            <Link to="/view-classroom">
               <FontAwesomeIcon className={sidebar.icons} icon={faEye} />
               View Classrooms
             </Link>
@@ -56,7 +64,7 @@ const Sidebar = () => {
         </ul>
       </div>
       <div className={sidebar.sidebarLogout}>
-        <button>
+        <button onClick={logout}>
           <FontAwesomeIcon
             className={sidebar.icons}
             icon={faArrowRightFromBracket}

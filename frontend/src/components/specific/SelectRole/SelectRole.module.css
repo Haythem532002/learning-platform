@@ -1,0 +1,31 @@
+.selectContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+.selectRole {
+  padding: 8px 12px;
+  font-size: 16px;
+  color: #333;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.selectRole:hover {
+  border-color: #888;
+}
+
+.selectRole:focus {
+  border-color: #0056b3;
+  box-shadow: 0 0 5px rgba(0, 86, 179, 0.3);
+}
+
+.selectRole option {
+  background-color: #fff;
+  color: #333;
+}

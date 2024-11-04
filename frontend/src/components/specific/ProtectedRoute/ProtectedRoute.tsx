@@ -1,25 +1,25 @@
 import React from "react";
-import { Link, Route, RouteProps } from "react-router-dom";
+import { Route, Navigate, Routes } from "react-router-dom";
 import { useAuth } from "../../../services/auth/AuthContext";
-// import { useAuth } from "./auth-context";
+import LoginPage from "../../../pages/LoginPage/LoginPage";
+import RegisterPage from "../../../pages/RegisterPage/RegisterPage";
 
-interface ProtectedRouteProps extends RouteProps {
-  component: React.ComponentType<any>;
-}
-
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
-  component: Component,
-  ...rest
-}) => {
+const ProtectedRoute: React.FC<any> = ({ component: Component, ...rest }) => {
   const { authToken } = useAuth();
 
+  if (!authToken) {
+    return (
+      <Routes>
+        <Route path="/login" Component={LoginPage} />
+        <Route path="/register" Component={RegisterPage} />
+      </Routes>
+    );
+  }
+
   return (
-    <Route
-      {...rest}
-      render={(props: any) =>
-        authToken ? <Component {...props} /> : <Link to="/login" />
-      }
-    />
+    <Routes>
+      <Route {...rest} element={<Component />} />
+    </Routes>
   );
 };
 

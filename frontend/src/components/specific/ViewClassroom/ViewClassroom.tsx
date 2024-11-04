@@ -10,10 +10,10 @@ const ViewClassroom = (props: viewClassroomProps) => {
 
   function render(): any {
     const comp: any = [];
-    classrooms.forEach((p,index) => {
+    classrooms.forEach((p, index) => {
       comp.push(<ClassroomComponentUpdated {...p} key={index} />);
     });
-    return <div>{comp}</div>;
+    return comp;
   }
   return <div id={styles.container}>{render()}</div>;
 };

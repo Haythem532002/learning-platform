@@ -11,16 +11,8 @@ import ProtectedRoute from "./components/specific/ProtectedRoute/ProtectedRoute"
 function App() {
   return (
     <AuthProvider>
-      
       <Router>
-        <Routes>
-          <Route path="/" Component={LoginPage} />
-          <Route path="/register" Component={RegisterPage} />
-        </Routes>
-        <Routes>
-          <Route Component={Dashboard} />
-          <ProtectedRoute path="/dashboard/*" Component={Dashboard} />
-        </Routes>
+        <ProtectedRoute path="/*" Component={Dashboard} />
       </Router>
     </AuthProvider>
   );

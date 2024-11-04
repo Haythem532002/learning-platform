@@ -1,8 +1,13 @@
 package haythem.project.auth;
 
+import haythem.project.models.Instructor;
+import haythem.project.models.User;
+import haythem.project.repositories.InstructorRepository;
+import haythem.project.repositories.UserRepository;
 import haythem.project.security.JwtService;
 import haythem.project.token.Token;
 import haythem.project.token.TokenRepository;
+import haythem.project.user.RoleUser;
 import haythem.project.user.UserAuth;
 import haythem.project.user.UserAuthRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +19,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 
-import static haythem.project.token.TokenType.*;
+import static haythem.project.token.TokenType.BEARER;
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +29,8 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
     private final TokenRepository tokenRepository;
+    private final UserRepository userRepository;
+    private final InstructorRepository instructorRepository;
 
     public Integer register(RegistrationRequest request) {
         var user = UserAuth.builder()
@@ -33,9 +40,34 @@ public class AuthenticationService {
                 .password(passwordEncoder.encode(request.getPassword()))
                 .enabled(true)
                 .locked(false)
+                .roleUser(request.getRoleUser())
                 .build();
 
-        return userAuthRepository.save(user).getId();
+        var authUser = userAuthRepository.save(user);
+        if (request.getRoleUser() == RoleUser.USER) {
+            var simpleUser = User.builder()
+                    .firstname(request.getFirstName())
+                    .lastname(request.getLastName())
+                    .email(request.getEmail())
+                    .password(passwordEncoder.encode(request.getPassword()))
+                    .enabled(true)
+                    .locked(false)
+                    .roleUser(request.getRoleUser())
+                    .build();
+            userRepository.save(simpleUser);
+        } else {
+            var instructor = Instructor.builder()
+                    .firstname(request.getFirstName())
+                    .lastname(request.getLastName())
+                    .email(request.getEmail())
+                    .password(passwordEncoder.encode(request.getPassword()))
+                    .enabled(true)
+                    .locked(false)
+                    .roleUser(request.getRoleUser())
+                    .build();
+            instructorRepository.save(instructor);
+        }
+        return authUser.getId();
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
@@ -47,6 +79,14 @@ public class AuthenticationService {
                 )
         );
         var user = (UserAuth) auth.getPrincipal();
+        var responseUser = new UserResponse(
+                user.getId(),
+                user.getFirstname(),
+                user.getLastname(),
+                user.getEmail(),
+                user.getPassword(),
+                user.getRoleUser()
+        );
         var claims = new HashMap<String, Object>();
         // generate a jwt token
         String token = jwtService.generateToken(claims, user);
@@ -60,14 +100,17 @@ public class AuthenticationService {
                 .build();
         tokenRepository.save(tokenRepo);
         //return the token
-        return AuthenticationResponse.builder().token(token).build();
+        return AuthenticationResponse.builder()
+                .token(token)
+                .response(responseUser)
+                .build();
     }
 
     private void revokeAllTokens(UserAuth userAuth) {
         List<Token> tokens = tokenRepository.findAllValidTokens(userAuth.getId());
-        if(tokens.isEmpty()) return;
+        if (tokens.isEmpty()) return;
         tokens.forEach(
-                t-> {
+                t -> {
                     t.setRevoked(true);
                     t.setExpired(true);
                 }

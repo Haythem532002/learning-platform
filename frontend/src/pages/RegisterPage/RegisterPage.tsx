@@ -3,6 +3,7 @@ import styles from "./RegisterPage.module.css";
 import logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 import { post } from "../../services/api";
+import SelectRole from "../../components/specific/SelectRole/SelectRole";
 
 function RegisterPage() {
   const [password, setPassword] = useState<string>("");
@@ -10,6 +11,7 @@ function RegisterPage() {
   const [email, setEmail] = useState<string>("");
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
+  const [role, setRole] = useState<string>("");
   const deadItem = useRef<HTMLParagraphElement | null>(null);
   const deadItem2 = useRef<HTMLParagraphElement | null>(null);
   const deadItem3 = useRef<HTMLParagraphElement | null>(null);
@@ -156,6 +158,7 @@ function RegisterPage() {
             </div>
             <form id={styles.loginForm}>
               <div id={styles.loginLinks}></div>
+              <SelectRole value={role} onChange={setRole} />
 
               <div className="spanner" style={{ flexWrap: "nowrap" }}>
                 <div className={styles.inputSpan}>
@@ -216,7 +219,7 @@ function RegisterPage() {
                 </p>
               </div>
               <div id={styles.loginControls}>
-                <Link to="/">Already Have An Account ?</Link>
+                <Link to="/login">Already Have An Account ?</Link>
                 <button
                   type="button"
                   onClick={register}

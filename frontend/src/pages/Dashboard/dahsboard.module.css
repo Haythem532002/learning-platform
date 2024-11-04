@@ -1,0 +1,9 @@
+.content {
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 20px;
+    width: 100%;
+}
+.content::-webkit-scrollbar:horizontal {
+  display: none;
+}
