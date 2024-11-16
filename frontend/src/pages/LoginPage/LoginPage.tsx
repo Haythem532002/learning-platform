@@ -12,6 +12,7 @@ function LoginPage() {
   const deadItem2 = useRef<HTMLParagraphElement | null>(null);
   const { setToken, setUserData } = useAuth();
 
+
   function handlePassword(e: any) {
     setPassword(e.target.value);
   }

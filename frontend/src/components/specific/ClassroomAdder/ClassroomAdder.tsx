@@ -9,6 +9,7 @@ import { Classroom } from "../../../types/props";
 import PickerComponent from "../../common/PickerComponent/PickerComponent";
 import MaterialComponent from "../MaterialComponent/MaterialComponent";
 import { post } from "../../../services/api";
+import axiosInstance from "../../../services/auth/axiosInstance";
 function ClassroomAdder() {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
@@ -218,21 +219,24 @@ function ClassroomAdder() {
       //realtime add
       const fd = new FormData();
       fd.append("title", title);
+      fd.append("password", title);
       fd.append("description", description);
       fd.append("isPrivate", isPrivate.toString());
       fd.append("date", formateDateToLocal(startDate));
-      console.log(fd);
+      // console.log(fd);
       if (materials.length) {
         materials.forEach((m) => {
-          fd.append("files", m);
+          if (m) fd.append("files", m);
         });
       } else {
-        //fd.append('files',[]);
+        fd.append("files", []);
       }
+      console.log("`${key}:`, value");
       fd.forEach((value, key) => {
         console.log(`${key}:`, value);
       });
-      axios
+      console.log(fd);
+      axiosInstance
         .post("http://localhost:8060/classroom", fd)
         .then((res: AxiosResponse) => console.log(res))
         .catch((e: AxiosError) => console.log(e.message));
@@ -425,7 +429,6 @@ function ClassroomAdder() {
         </span>
         <h4 style={{ marginBottom: "1em" }}>Starting Time</h4>
         <div className="spanner">
-          ²
           <div className="column">
             <label htmlFor="year">Date</label>
             <DatePicker

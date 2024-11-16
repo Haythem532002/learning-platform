@@ -16,17 +16,17 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   const [authToken, setAuthToken] = useState<string | null>(
     localStorage.getItem("jwtToken")
   );
-const [user, setUser] = useState<User | null>(() => {
-  const storedUser = localStorage.getItem("user");
-  return storedUser ? JSON.parse(storedUser) : null;
-});
+  const [user, setUser] = useState<User | null>(() => {
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
 
   const setToken = (token: string) => {
     localStorage.setItem("jwtToken", token);
     setAuthToken(token);
   };
   const setUserData = (user: User) => {
-    localStorage.setItem("user",JSON.stringify(user));
+    localStorage.setItem("user", JSON.stringify(user));
     setUser(user);
   };
 

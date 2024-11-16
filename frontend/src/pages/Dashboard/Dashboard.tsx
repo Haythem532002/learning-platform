@@ -9,6 +9,9 @@ import styles from "./dahsboard.module.css";
 import { useAuth } from "../../services/auth/AuthContext";
 import ClassroomDetails from "../../components/specific/ClassroomDetails";
 export default function Dashboard() {
+  const { authToken } = useAuth();
+
+  console.log(authToken);
   const [classrooms, setClassrooms] = useState<Classroom[]>([]);
   const fetchData = async () => {
     const res = await get("http://localhost:8060/classroom");
@@ -30,14 +33,14 @@ export default function Dashboard() {
       <Sidebar />
       <div className={styles.content}>
         {/* <ClassroomDetails /> */}
-        <Routes>
+        <ViewClassroom classrooms={classrooms} />
+        {/* <Routes>
           <Route
             path="/view-classroom"
             element={<ViewClassroom classrooms={classrooms} />}
           />
           <Route path="/add-classroom" element={<ClassroomAdder />} />
-          
-        </Routes>
+        </Routes> */}
       </div>
     </div>
   );
