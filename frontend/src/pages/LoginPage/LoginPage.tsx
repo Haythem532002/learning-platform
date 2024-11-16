@@ -54,8 +54,13 @@ function LoginPage() {
 
   async function login() {
     let res = await post("http://localhost:8060/auth/login", {
+<<<<<<< HEAD
       email: email,
       password: password,
+=======
+      email: "aness@gmail.com",
+      password: "12345678",
+>>>>>>> 551a9425b0c6618211b15cb9c363e20a5297c7b3
     });
     if (res.status == 200) {
       console.log("Logged In");
