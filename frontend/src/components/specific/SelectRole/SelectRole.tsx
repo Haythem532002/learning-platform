@@ -12,10 +12,13 @@ const SelectRole: FC<SelectRoleProps> = ({ value, onChange }) => {
       <select
         className={styles.selectRole}
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => {
+          console.log(e.target.value);
+          onChange(e.target.value);
+        }}
       >
-        <option value="Instructor">Instructor</option>
-        <option value="User">User</option>
+        <option value="INSTRUCTOR">Instructor</option>
+        <option value="USER">User</option>
       </select>
     </div>
   );
