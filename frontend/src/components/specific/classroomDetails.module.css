@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.goLive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.goLiveButton {
+  background-color: red;
+  width: 200px;
+  color: white;
+  height: 100px;
+  border-radius: 10px;
+  font-size: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s ease;
+}
+
+.goLiveButton:hover {
+  color: red;
+  background-color: white;
+  border: 2px solid red;
+  transition: 0.2s ease;
+}

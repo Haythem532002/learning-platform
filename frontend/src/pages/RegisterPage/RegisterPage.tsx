@@ -119,11 +119,13 @@ function RegisterPage() {
   }, [lastName]);
 
   async function register() {
+    console.log("Role", role);
     let res = await post("http://localhost:8060/auth/register", {
-      email: "anes@gmail.com",
-      password: "12345678",
-      firstName: "azd",
-      lastName: "azdad",
+      email: email,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      roleUser: role,
     });
     if (res.status == 200) {
       console.log("registered");
@@ -159,7 +161,6 @@ function RegisterPage() {
             <form id={styles.loginForm}>
               <div id={styles.loginLinks}></div>
               <SelectRole value={role} onChange={setRole} />
-
               <div className="spanner" style={{ flexWrap: "nowrap" }}>
                 <div className={styles.inputSpan}>
                   <input

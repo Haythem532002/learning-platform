@@ -7,11 +7,12 @@ import ClassroomAdder from "../../components/specific/ClassroomAdder/ClassroomAd
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import styles from "./dahsboard.module.css";
 import { useAuth } from "../../services/auth/AuthContext";
+import ClassroomDetails from "../../components/specific/ClassroomDetails";
 export default function Dashboard() {
-
   const [classrooms, setClassrooms] = useState<Classroom[]>([]);
   const fetchData = async () => {
     const res = await get("http://localhost:8060/classroom");
+    console.log(res);
     setClassrooms(res.data);
   };
   useEffect(() => {
@@ -28,12 +29,14 @@ export default function Dashboard() {
     >
       <Sidebar />
       <div className={styles.content}>
+        {/* <ClassroomDetails /> */}
         <Routes>
           <Route
             path="/view-classroom"
             element={<ViewClassroom classrooms={classrooms} />}
           />
           <Route path="/add-classroom" element={<ClassroomAdder />} />
+          
         </Routes>
       </div>
     </div>

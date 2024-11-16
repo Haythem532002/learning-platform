@@ -6,14 +6,12 @@ async function post(url: string, data: any) {
     ok: 0,
     message: "",
   };
-  console.log(data);
   let response: any = null;
   await axios
     .post(url, data)
     .then((res: AxiosResponse) => {
       console.log(res);
       response = res;
-
       payload.message = res.data.message;
       payload.ok = res.data.ok;
     })

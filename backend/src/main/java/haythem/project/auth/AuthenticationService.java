@@ -33,17 +33,17 @@ public class AuthenticationService {
     private final InstructorRepository instructorRepository;
 
     public Integer register(RegistrationRequest request) {
-        var user = UserAuth.builder()
-                .firstname(request.getFirstName())
-                .lastname(request.getLastName())
-                .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .enabled(true)
-                .locked(false)
-                .roleUser(request.getRoleUser())
-                .build();
-
-        var authUser = userAuthRepository.save(user);
+//        var user = UserAuth.builder()
+//                .firstname(request.getFirstName())
+//                .lastname(request.getLastName())
+//                .email(request.getEmail())
+//                .password(passwordEncoder.encode(request.getPassword()))
+//                .enabled(true)
+//                .locked(false)
+//                .roleUser(request.getRoleUser())
+//                .build();
+//
+//        var authUser = userAuthRepository.save(user);
         if (request.getRoleUser() == RoleUser.USER) {
             var simpleUser = User.builder()
                     .firstname(request.getFirstName())
@@ -54,7 +54,7 @@ public class AuthenticationService {
                     .locked(false)
                     .roleUser(request.getRoleUser())
                     .build();
-            userRepository.save(simpleUser);
+            return userRepository.save(simpleUser).getId();
         } else {
             var instructor = Instructor.builder()
                     .firstname(request.getFirstName())
@@ -65,9 +65,9 @@ public class AuthenticationService {
                     .locked(false)
                     .roleUser(request.getRoleUser())
                     .build();
-            instructorRepository.save(instructor);
+            return instructorRepository.save(instructor).getId();
         }
-        return authUser.getId();
+
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {

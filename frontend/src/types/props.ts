@@ -3,6 +3,7 @@ interface Material {
   files: string[];
 }
 export interface Classroom {
+  id: number;
   title: string;
   description: string;
   password: string;

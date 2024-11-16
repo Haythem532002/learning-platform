@@ -54,8 +54,8 @@ function LoginPage() {
 
   async function login() {
     let res = await post("http://localhost:8060/auth/login", {
-      email: "anees@gmail.com",
-      password: "12345678",
+      email: email,
+      password: password,
     });
     if (res.status == 200) {
       console.log("Logged In");
@@ -63,8 +63,6 @@ function LoginPage() {
       setUserData(res.data.response);
 
       console.log(res.data.response);
-
-      // window.location.href = "/";
     } else {
       console.log("can't login");
     }
