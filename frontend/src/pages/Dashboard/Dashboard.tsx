@@ -37,16 +37,14 @@ export default function Dashboard() {
     >
       <Sidebar />
       <div className={styles.content}>
-        {
-          <Routes>
-            <Route
-              path="/view_classroom"
-              element={<ViewClassroom classrooms={classrooms} />}
-            />
-            <Route path="/add_classroom" element={<ClassroomAdder />} />
-            <Route path="/*" element={<Navigate to="" replace />} />
-          </Routes>
-        }
+        <Routes>
+          <Route
+            path="/view_classroom"
+            element={<ViewClassroom classrooms={classrooms} />}
+          />
+          <Route path="/add_classroom" element={<ClassroomAdder />} />
+          <Route path="/*" element={<Navigate to="" replace />} />
+        </Routes>
       </div>
     </div>
   );
