@@ -12,7 +12,6 @@ function LoginPage() {
   const deadItem2 = useRef<HTMLParagraphElement | null>(null);
   const { setToken, setUserData } = useAuth();
 
-
   function handlePassword(e: any) {
     setPassword(e.target.value);
   }
@@ -62,6 +61,7 @@ function LoginPage() {
       console.log("Logged In");
       setToken(res.data.token);
       setUserData(res.data.response);
+      window.location.href = "/dashboard";
 
       console.log(res.data.response);
     } else {

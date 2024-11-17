@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import axiosInstance from "./auth/axiosInstance";
 
 async function post(url: string, data: any) {
   let payload = {
@@ -7,7 +8,7 @@ async function post(url: string, data: any) {
     message: "",
   };
   let response: any = null;
-  await axios
+  await axiosInstance
     .post(url, data)
     .then((res: AxiosResponse) => {
       console.log(res);
@@ -29,7 +30,7 @@ async function get(url: string) {
     ok: 0,
     message: "",
   };
-  await axios
+  await axiosInstance
     .get(url)
     .then((res: AxiosResponse) => {
       if (res.data) {

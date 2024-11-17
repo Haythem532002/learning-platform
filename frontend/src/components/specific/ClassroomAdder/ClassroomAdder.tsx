@@ -10,6 +10,7 @@ import PickerComponent from "../../common/PickerComponent/PickerComponent";
 import MaterialComponent from "../MaterialComponent/MaterialComponent";
 import { post } from "../../../services/api";
 import axiosInstance from "../../../services/auth/axiosInstance";
+import { formateDateToLocal } from "../../../utils/utils";
 function ClassroomAdder() {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
@@ -222,47 +223,53 @@ function ClassroomAdder() {
       fd.append("password", title);
       fd.append("description", description);
       fd.append("isPrivate", isPrivate.toString());
-      fd.append("date", formateDateToLocal(startDate));
+      fd.append("password", password);
+      fd.append("date", formateDateToLocal(startDate, newDate.getMinutes(), 0));
       // console.log(fd);
       if (materials.length) {
         materials.forEach((m) => {
           if (m) fd.append("files", m);
         });
       } else {
-        fd.append("files", []);
+        const emptyFile = new File([""], "empty.txt", { type: "text/plain" });
+        fd.append("files", emptyFile);
       }
       console.log("`${key}:`, value");
       fd.forEach((value, key) => {
         console.log(`${key}:`, value);
       });
       console.log(fd);
-      axiosInstance
-        .post("http://localhost:8060/classroom", fd)
-        .then((res: AxiosResponse) => console.log(res))
+
+      post("http://localhost:8060/classroom", fd)
+        .then((res: AxiosResponse) => {
+          if (res.status == 200) {
+            setClassrooms((prev) => {
+              const classroom: Classroom = {
+                title: title,
+                description: description,
+                startTime: newDate,
+                private: isPrivate,
+                id: 0,
+                password: password,
+                streamId: "",
+                active: false,
+                materials: materials,
+              };
+              setTitle("");
+              setDescription("");
+              setStartDate(new Date());
+              setHour(0);
+              setMinute(0);
+
+              if (prev) return [...prev, classroom];
+              else return [classroom];
+            });
+          } else {
+            console.log("failed to add classroom");
+          }
+        })
         .catch((e: AxiosError) => console.log(e.message));
       //await post('http://localhost:3000/addClassroom',)
-      const data = { ok: 1, message: "azd" };
-      if (data.ok == 1) {
-        setClassrooms((prev) => {
-          const classroom: Classroom = {
-            title: title,
-            description: description,
-            startingDate: newDate,
-            visibility: isPublic,
-          };
-          setTitle("");
-          setDescription("");
-          setStartDate(new Date());
-          setHour(0);
-          setMinute(0);
-
-          if (prev) return [...prev, classroom];
-          else return [classroom];
-        });
-      } else {
-        //notify
-        console.log(data.message);
-      }
     }
   }
   function makeVisible(status: boolean) {
@@ -272,33 +279,6 @@ function ClassroomAdder() {
       clearButton.current.style.opacity = status ? "100%" : "50%";
   }
 
-  function formateDateToLocal(date: Date) {
-    // 2024-01-01T14:30:30
-    const month: number = date.getMonth() + 1;
-    const day: number = date.getDate();
-    const monthadder = month < 10 ? "0" : "";
-    const dayadder = day < 10 ? "0" : "";
-    const minuteadder = minute < 10 ? "0" : "";
-    const houradder = hour < 10 ? "0" : "";
-    return (
-      date.getFullYear() +
-      "-" +
-      monthadder +
-      month +
-      "-" +
-      dayadder +
-      day +
-      "T" +
-      houradder +
-      hour +
-      ":" +
-      minuteadder +
-      minute +
-      ":00"
-    );
-
-    //011-3T0:0:00
-  }
   function handleDate(date: Date | null) {
     if (date) {
       setStartDate(date);

@@ -25,14 +25,14 @@ const Sidebar = () => {
         <ul>
           <li>
             {user !== null && user.roleUser === "INSTRUCTOR" && (
-              <Link to="/add-classroom">
+              <Link to="/dashboard/add_classroom">
                 <FontAwesomeIcon className={sidebar.icons} icon={faPlus} />
                 Create Classroom
               </Link>
             )}
           </li>
           <li>
-            <Link to="/view-classroom">
+            <Link to="/dashboard/view_classroom">
               <FontAwesomeIcon className={sidebar.icons} icon={faEye} />
               View Classrooms
             </Link>

@@ -9,7 +9,8 @@ interface viewClassroomProps {
   classrooms: Classroom[];
 }
 const ViewClassroom = (props: viewClassroomProps) => {
-  const classrooms: Classroom[] = props.classrooms;
+  console.log(props.classrooms);
+  const classrooms: Classroom[] = props.classrooms ? props.classrooms : [];
 
   const [displayed, setDisplayed] = useState<Classroom | null>(null);
 
