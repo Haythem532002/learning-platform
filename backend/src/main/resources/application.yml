@@ -3,13 +3,13 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/bro
+    url: jdbc:postgresql://localhost:5432/postgres
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: 123
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     database: postgresql
     properties:
       hibernate:

@@ -158,6 +158,19 @@ function ClassroomAdder() {
       }
     }
   }
+
+  function closeForm() {
+    if (adderForm.current) adderForm.current.style.opacity = "0%";
+    setTimeout(() => {
+      if (adderForm.current) adderForm.current.style.display = "none";
+    }, 200);
+  }
+  function openForm() {
+    if (adderForm.current) adderForm.current.style.display = "flex";
+    setTimeout(() => {
+      if (adderForm.current) adderForm.current.style.opacity = "100%";
+    }, 200);
+  }
   function pickFile() {
     if (hiddenInput.current) {
       hiddenInput.current.click();
@@ -256,6 +269,7 @@ function ClassroomAdder() {
           }
         })
         .catch((e: AxiosError) => console.log(e.message));
+      //await post('http://localhost:3000/addClassroom',)
     }
   }
   function makeVisible(status: boolean) {
@@ -290,6 +304,16 @@ function ClassroomAdder() {
       if (publicButton.current) publicButton.current.className = "";
     }
   }, [isPrivate, isPublic]);
+
+  useEffect(() => {
+    try {
+      // const fetchRooms=async()=>{const data= await get('http://localhost:3000/addClassroom');return data}
+      //  const data:any=fetchRooms()
+      // setClassrooms(data.classRooms)
+    } catch (e: any) {
+      console.log(e.message);
+    }
+  }, []);
 
   return (
     <div id="classroom-container">
@@ -370,11 +394,18 @@ function ClassroomAdder() {
             ref={passwordInput}
             type="password"
             name="password"
-            style={{ padding: "8px" }}
+            style={{ border: "0.08em solid black", borderRadius: "1em" }}
             required
             onChange={handlePassword}
             value={password}
           />
+          <button
+            ref={clearButton}
+            type="button"
+            id="password-clear"
+            onMouseDown={() => makeVisible(true)}
+            onMouseUp={() => makeVisible(false)}
+          ></button>
         </span>
         <h4 style={{ marginBottom: "1em" }}>Starting Time</h4>
         <div className="spanner">

@@ -1,0 +1,12 @@
+#container {
+  display: block;
+  text-align: center;
+  width: 30em;
+  height: 5em;
+  background-color: rgba(0, 0, 0, 0.452);
+  color: white;
+  padding: 1em;
+  border-radius: 1em;
+  position: absolute;
+  overflow: hidden;
+}

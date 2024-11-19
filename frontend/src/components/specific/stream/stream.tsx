@@ -2,6 +2,8 @@ import { useEffect, useState, useRef } from "react";
 import "./stream.css";
 import axios from "axios";
 import Peer from "peerjs";
+import Transcript from "../Transcription/Transcription";
+
 function Stream() {
   const video = useRef<HTMLVideoElement | null>(null);
   const otherVideo = useRef<HTMLVideoElement | null>(null);
@@ -19,8 +21,8 @@ function Stream() {
   const [adminStatus, setAdminStatus] = useState<boolean>(false);
   const [guests, setGuests] = useState<any>([]);
   const [socketId, setSocketId] = useState<any>(null);
+  const [transcriptStatus, setTranscriptStatus] = useState<any>(null);
   const WebSocket = useRef<WebSocket>(null);
-
   useEffect(() => {
     console.log("hiiiiiiiiiiiiiiiii");
     console.log(id);
@@ -125,6 +127,7 @@ function Stream() {
   function turnOn(camera: boolean, mic: boolean) {
     // if (cameraStatus && micStatus) return;
 
+    //*********** */
     ref.current = new Peer();
 
     ref.current.on("open", (id: any) => {
@@ -183,6 +186,9 @@ function Stream() {
           });
         });
         //start streaming
+        setTranscriptStatus(true);
+
+        /************************************************ */
       })
       .catch((e) => console.log(e));
     //getting id
@@ -231,7 +237,7 @@ function Stream() {
     const streamId = data.streamId;
     if (streamId) {
       setGuests((prev: any) => {
-        return prev.filter((p) => {
+        return prev.filter((p: any) => {
           console.log("ids");
           console.log(p);
           console.log(streamId);
@@ -413,6 +419,7 @@ function Stream() {
       <h1>LIVE Stream</h1>
 
       <video id="live-frame" ref={video} autoPlay playsInline />
+      <Transcript transcriptStatus={transcriptStatus} />
       <div id="guests">
         {!adminStatus ? (
           <video id="live-frame" ref={otherVideo} autoPlay playsInline muted />
