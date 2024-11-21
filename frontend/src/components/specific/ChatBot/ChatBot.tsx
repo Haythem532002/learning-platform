@@ -4,10 +4,14 @@ import { messageObject } from "../../../types/types";
 import { get } from "../../../services/api";
 import chaticon from "../../../assets/bot.png";
 import usericon from "../../../assets/aaaa.jpg";
+import LoadingPanel from "../LoadingPanel/LoadingPanel";
+import ChoicesPanel from "../CoicesPanel/ChoicesPanel";
+import InputTime from "react-datepicker/dist/input_time";
 
 export function ChatBot() {
   const [input, setInput] = useState<string>("");
-  const [dropMneuStatus, setDropMenuStatus] = useState<boolean>(false);
+  const [dropMenuStatus, setDropMenuStatus] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [messages, setMessages] = useState<messageObject[]>([]);
   const [chatStatus, setChatStatus] = useState(false);
   const chatButton = useRef<HTMLButtonElement | null>(null);
@@ -25,16 +29,17 @@ export function ChatBot() {
       setChatStatus((prev) => !prev);
     }
   }
-  async function sendMessage() {
+  async function sendMessage(message: string) {
     setMessages((prev: messageObject[]) => {
-      return [...prev, { message: input, type: "user" }];
+      return [...prev, { message: message, type: "user" }];
     });
-
+    setInput("");
+    setLoading(true);
     const res: any = await get(
       `http://localhost:8090/chatbot?message=${input}`
     );
     console.log(res);
-    setInput("");
+    setLoading(false);
     await setMessages((prev: messageObject[]) => {
       return [
         ...prev,
@@ -68,12 +73,12 @@ export function ChatBot() {
     }
   }
   useEffect(() => {
-    if (dropMneuStatus) {
+    if (dropMenuStatus) {
       popMenu();
     } else {
       hideMenu();
     }
-  }, [dropMneuStatus]);
+  }, [dropMenuStatus]);
 
   useEffect(() => {
     if (chatStatus) {
@@ -116,7 +121,8 @@ export function ChatBot() {
     }
   }, [chatStatus]);
 
-  function getMessage(m: messageObject) {
+  function getMessage(m: messageObject, index: Number) {
+    const lastMessage = index == messages.length - 1;
     return m.type == "user" ? (
       <div className={styles.userMessage} style={{ alignSelf: "flex-end" }}>
         <div
@@ -128,21 +134,26 @@ export function ChatBot() {
         </p>
       </div>
     ) : (
-      <div className={styles.userMessage} style={{ alignSelf: "flex-start" }}>
-        <div
-          className={styles.userIcon}
-          style={{
-            alignSelf: "flex-start",
-            backgroundImage: `url(${chaticon})`,
-          }}
-        ></div>
-        <p
-          className={styles.messageBody}
-          style={{ backgroundColor: "rgb(0, 110, 255)" }}
-        >
-          {m.message}
-        </p>
-      </div>
+      <>
+        <div className={styles.userMessage} style={{ alignSelf: "flex-start" }}>
+          <div
+            className={styles.userIcon}
+            style={{
+              alignSelf: "flex-start",
+              backgroundImage: `url(${chaticon})`,
+            }}
+          ></div>
+          <p
+            className={styles.messageBody}
+            style={{ backgroundColor: "rgb(0, 110, 255)" }}
+          >
+            {m.message}
+          </p>
+        </div>
+        {lastMessage && (
+          <ChoicesPanel setInput={setInput} sendMessage={sendMessage} />
+        )}
+      </>
     );
   }
 
@@ -171,10 +182,12 @@ export function ChatBot() {
           <h5>ChatBot</h5>
         </div>
         <div id={styles.messageContainer}>
-          {messages.map((m: messageObject) => {
-            return getMessage(m);
+          {messages.map((m: messageObject, index: Number) => {
+            return getMessage(m, index);
           })}
+          {loading && <LoadingPanel />}
         </div>
+
         <div id={styles.sender}>
           <div id={styles.inputContainer}>
             <input
@@ -184,7 +197,10 @@ export function ChatBot() {
               type="text"
               placeholder="Write a message"
             />
-            <button onClick={sendMessage} id={styles.sendButton}></button>
+            <button
+              onClick={() => sendMessage(input)}
+              id={styles.sendButton}
+            ></button>
           </div>
         </div>
         <div ref={chatFiller} id={styles.filler}></div>

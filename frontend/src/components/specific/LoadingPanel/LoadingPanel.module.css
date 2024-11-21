@@ -1,0 +1,20 @@
+#container {
+  width: 5em;
+  padding: 0.3em 0.5em;
+  background-color: gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  border-radius: 0.7em;
+  top: 0%;
+  margin: 1em;
+}
+.point {
+  width: 0.7em;
+  height: 0.7em;
+  border-radius: 100em;
+  background-color: rgba(0, 0, 0, 0.534);
+  margin: 0 0.25em;
+  transition: 0.2s all;
+}
