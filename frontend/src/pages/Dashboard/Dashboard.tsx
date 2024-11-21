@@ -74,7 +74,7 @@ export default function Dashboard() {
       //handle the chat
       if (chatButton.current) chatButton.current.style.opacity = "0%";
       if (chatContainer.current) {
-        chatContainer.current.style.width = "15em";
+        chatContainer.current.style.width = "18em";
         chatContainer.current.style.height = "35em";
       }
 
@@ -150,7 +150,7 @@ export default function Dashboard() {
     >
       <Sidebar />
       <div className={styles.content}>
-        <Stream />
+        {/* <Stream /> */}
         {
           <Routes>
             <Route
