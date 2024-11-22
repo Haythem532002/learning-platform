@@ -3,6 +3,7 @@ import "./stream.css";
 import axios from "axios";
 import Peer from "peerjs";
 import Transcript from "../Transcription/Transcription";
+import LanguagePanel from "../LanguagePanel/LanguagePanel";
 
 function Stream() {
   const video = useRef<HTMLVideoElement | null>(null);
@@ -22,6 +23,7 @@ function Stream() {
   const [guests, setGuests] = useState<any>([]);
   const [socketId, setSocketId] = useState<any>(null);
   const [transcriptStatus, setTranscriptStatus] = useState<any>(null);
+  const [transcriptLanguage, setTranscriptLanguage] = useState<string>("en-US");
   const WebSocket = useRef<WebSocket>(null);
   useEffect(() => {
     console.log("hiiiiiiiiiiiiiiiii");
@@ -214,6 +216,7 @@ function Stream() {
     setGuests([]);
     ref.current = null;
     setId(null);
+    setTranscriptStatus(false);
   }
 
   const makeCall = (otherPeerId: any) => {
@@ -419,7 +422,10 @@ function Stream() {
       <h1>LIVE Stream</h1>
 
       <video id="live-frame" ref={video} autoPlay playsInline />
-      <Transcript transcriptStatus={transcriptStatus} />
+      <Transcript
+        transcriptState={[transcriptLanguage, setTranscriptLanguage]}
+        transcriptStatus={transcriptStatus}
+      />
       <div id="guests">
         {!adminStatus ? (
           <video id="live-frame" ref={otherVideo} autoPlay playsInline muted />
@@ -526,6 +532,14 @@ function Stream() {
           >
             Utility : {displayStatus ? "Visible" : "Hidden"}
           </button>
+          {!streamStatus && (
+            <LanguagePanel
+              transcriptLanguageState={[
+                transcriptLanguage,
+                setTranscriptLanguage,
+              ]}
+            />
+          )}
         </div>
       </div>
     </div>

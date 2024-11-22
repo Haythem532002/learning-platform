@@ -37,7 +37,7 @@ export default function Dashboard() {
     >
       <Sidebar />
       <div className={styles.content}>
-        {/* <Stream /> */}
+        <Stream />
         {
           <Routes>
             <Route

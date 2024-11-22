@@ -1,5 +1,5 @@
 #container {
-  display: block;
+  display: inline;
   text-align: center;
   width: 30em;
   height: 5em;
@@ -9,4 +9,7 @@
   border-radius: 1em;
   position: absolute;
   overflow: hidden;
+}
+#lastWord {
+  color: rgb(56, 114, 240);
 }
