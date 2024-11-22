@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./Transcription.module.css";
 interface TranscriptType {
   transcriptStatus: boolean;
+  transcriptState: [string, any];
 }
 
 export default function Transcript(props: TranscriptType) {
@@ -9,8 +10,13 @@ export default function Transcript(props: TranscriptType) {
 
   const [speechRecognition, setSpeechRecognition]: any = useState(null);
   const [recognition, setRecognition]: any = useState(null);
-  const [transcript, setTranscript] = useState("");
-
+  const [transcript, setTranscript] = useState<string>("");
+  const [lastWord, setLastWord] = useState<string>("");
+  const [transcriptLanguage, setTranscriptLanguage] = props.transcriptState;
+  useEffect(() => {
+    console.log("changed successfully");
+    console.log(transcriptLanguage);
+  }, [transcriptLanguage]);
   function startTranscript() {
     setSpeechRecognition(() => {
       return window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -25,18 +31,36 @@ export default function Transcript(props: TranscriptType) {
     const recognition = new speechRecognition();
     recognition.continuous = true; // Keep listening
     recognition.interimResults = true; // Show interim results
-    recognition.lang = "en-US";
+    recognition.lang = transcriptLanguage;
     setRecognition(() => {
       let tempreco = null;
       if (speechRecognition) {
         tempreco = new speechRecognition();
         tempreco.continuous = true;
         tempreco.interimResults = true;
-        tempreco.lang = "en-US";
+        tempreco.lang = transcriptLanguage;
       } else return null;
       return tempreco;
     });
   }
+  useEffect(() => {
+    if (!transcript.length) {
+      setLastWord("");
+    }
+    let lastWord = "";
+    console.log(transcript);
+    for (let k = transcript.length - 1; k > -1; k--) {
+      if (transcript[k] == " ") {
+        break;
+      }
+      lastWord += transcript[k];
+    }
+    lastWord = lastWord.split("").reverse().join("");
+    setTranscript((prev) => {
+      return prev.substring(0, prev.length - lastWord.length);
+    });
+    if (lastWord.length) setLastWord(lastWord);
+  }, [transcript]);
   useEffect(() => {
     console.log("TRANSCIRPT IS " + transcript);
     if (transcriptStatus) {
@@ -87,11 +111,16 @@ export default function Transcript(props: TranscriptType) {
       recognition.onerror = (event: any) => {
         console.error("Speech recognition error:", event.error);
       };
-      //a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n
+
       recognition.onend = () => {
         console.log("Speech recognition ended.");
       };
     }
   }, [recognition]);
-  return <div id={styles.container}>{transcript}</div>;
+  return (
+    <div id={styles.container}>
+      {transcript}
+      <div id={styles.lastWord}>{lastWord}</div>
+    </div>
+  );
 }

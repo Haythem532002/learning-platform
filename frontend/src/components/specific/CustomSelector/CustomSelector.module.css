@@ -1,0 +1,12 @@
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.optionButton {
+  border-radius: 0.5em !important;
+  padding: 0.3em;
+  background-color: rgb(63, 91, 250);
+  color: white;
+}
