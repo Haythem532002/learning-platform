@@ -46,6 +46,7 @@ export default function Dashboard() {
             />
             <Route path="/add_classroom" element={<ClassroomAdder />} />
             <Route path="/*" element={<Navigate to="" replace />} />
+            <Route path="/stream" element={<Stream />} />
           </Routes>
         }
       </div>

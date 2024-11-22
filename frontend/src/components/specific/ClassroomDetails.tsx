@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useState } from "react";
 import { Classroom } from "../../types/props";
+import { Link } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -47,7 +48,6 @@ const files: File[] = [
 ];
 
 const ClassroomDetails = (props: Classroom) => {
-  console.log("dffsdsfsdfsdfdssdfsfsdfsd")
   console.log(props);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -55,9 +55,9 @@ const ClassroomDetails = (props: Classroom) => {
   return (
     <div className={classroomDetails.container}>
       <div className={classroomDetails.goLive}>
-        <a className={classroomDetails.goLiveButton} href="">
-          Go Live
-        </a>
+        <Link to={"/dashboard/stream"}>
+          <p className={classroomDetails.goLiveButton}>Go Live</p>
+        </Link>
       </div>
       <div>
         <Button
