@@ -22,7 +22,7 @@ public class ChatbotService {
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Type", "application/json; charset=utf-8");
-        headers.set("Authorization", "Bearer ya29.a0AeDClZAG1MKwgQbiYamFZlg5ieQATI-QR2EzjITKV8zaAkInbUDmfhb_vAcj-D0XT8He2GnQfRRWOr9fzPfRvfEz0LTETSTYjULSrxlNL5oaOuk2pG221ecUrFHLaHgAjdPQZIl3EQMf6YvvaKT4tfRWTAb4dsGehb4MhlNyQJ3w5f6XRxGnOdIMP0WA1ZkpFuFl8GL6nwOlzf3Y7jxmIBtYQfaBk16VMlpPZYxx0eY4xA-7OUmBetfTY9InbLmpgtfeUnwbzxkoHY7LW6zQidvgwDSVMPCXtcNPjc0nUT4iS-7P8apzwQM2wE7oVTuSQoGklRg0yEzSIXJ0CV6r5ml0vF7gwJnGNr2JbeKzaiZ82gCBzwc7rTxp_L0m3EKWTqVsDKEpWZsJ_mA8nuaUmP4xL_0uYWprkiW60ylvhQkDaCgYKARUSARASFQHGX2MigVtIangryQ-xvdzwH7ivIA0435");
+        headers.set("Authorization", "Bearer ya29.a0AeDClZBYlS_dpOgwZuk1nOCIcGEGp9PFu23-W-5KWtfxXEOAgnTVHoNW4jIu03KMjFwgUosSJo9aKyswUjaRz48TDUKhgDlHVzHKUYAlgxTeUzJ6c8xMnbWQ0yh2aOpLaVl29YNfZtrBEHNlf27PVoZmMEQaBLjM-MaywW7tTFb-c66i7yITC71-3l51aLD6rgpMvrxlRCmzZNaM74qF1cds3HnqkTCJi1NQ5WxCps2Qs8tA1VgXuJbLpg4IYtOgNVhFB-06JJmdCHkpmuymSz32s7Abl-hqIvg66GtPCoMgKYtRfzz-914k6OoboW0NzRrDDMwXv3K2JeiHg2LdD4FvDvjWa56t49Ze6RrzdbQF_UN5kIGU1LnLGABrnSsJFhcmmGTY98eeyi_odnG8V1jYgRwRRnIVIRNTBjUWCK4nVAaCgYKAZgSARASFQHGX2MiYln0unPKdScYPdMMsxtfOw0437");
 
         Map<String, String> textContent = new HashMap<>();
         textContent.put("text", message);

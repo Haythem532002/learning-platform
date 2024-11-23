@@ -36,7 +36,7 @@ export function ChatBot() {
     setInput("");
     setLoading(true);
     const res: any = await get(
-      `http://localhost:8090/chatbot?message=${input}`
+      `http://localhost:8060/chatbot?message=${message}`
     );
     console.log(res);
     setLoading(false);
@@ -46,7 +46,7 @@ export function ChatBot() {
         {
           message: res.data.queryResult
             ? res.data.queryResult.fulfillmentText
-            : "Hello There",
+            : "Bot is down",
           type: "bot",
         },
       ];

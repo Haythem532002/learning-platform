@@ -9,9 +9,9 @@ export default function ChoicesPanel(props: choicesProps) {
   const sendMessage = props.sendMessage;
   const [questions, setQuestions] = useState<String[]>([
     "Who are you ?",
-    "Who are you ?",
-    "What do you do ?",
-    "What is This ?",
+    "What are the functionnalities of this platform ?",
+    "How to join a classroom ?",
+    "How do i communicate in a classroom ?",
   ]);
   function choice(e: string) {
     if (e) sendMessage(e);
